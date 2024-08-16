@@ -1,7 +1,6 @@
 import csv
 import requests
 import json
-from config import API_KEY
 from searchCriteria import DEPARTURE_AIRPORT,ARRIVAL_AIRPORT,DEPARTURE_DATE,CURRENCY,CABIN_CLASS,ADULTS 
 
 def writeToJSON(data): 
