@@ -2,7 +2,7 @@ import csv
 import requests
 import json
 from searchCriteria import DEPARTURE_AIRPORT,ARRIVAL_AIRPORT,DEPARTURE_DATE,CURRENCY,CABIN_CLASS,ADULTS 
-
+import os as os
 def writeToJSON(data): 
     with open('results/cheapestOneWay.json', 'w') as f:
         json.dump(data, f, indent=4)
@@ -26,7 +26,7 @@ def makeAPICall():
         querystring = {"fromEntityId":DEPARTURE_AIRPORT,"toEntityId":airport,"departDate":DEPARTURE_DATE, "currency":CURRENCY, "cabinClass":CABIN_CLASS, "adults":ADULTS}
 
         headers = {
-	        "X-RapidAPI-Key": API_KEY,
+	        "X-RapidAPI-Key": os.getenv('API_KEY'),
 	        "X-RapidAPI-Host": "sky-scanner3.p.rapidapi.com"
         }
 
