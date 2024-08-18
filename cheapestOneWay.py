@@ -19,7 +19,7 @@ def writeToCSV(airport, data):
 
 def makeAPICall(): 
     
-    Arrival_Airports = ["AMS", "BCN", "CDG", "FCO", "FRA", "LHR", "SPU"]
+    Arrival_Airports = ["AMS"]
     
     for airport in Arrival_Airports:
         url = "https://sky-scanner3.p.rapidapi.com/flights/cheapest-one-way"
