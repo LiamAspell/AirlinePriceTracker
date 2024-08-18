@@ -3,6 +3,7 @@ import requests
 import json
 from searchCriteria import DEPARTURE_AIRPORT,ARRIVAL_AIRPORT,DEPARTURE_DATE,CURRENCY,CABIN_CLASS,ADULTS 
 import os as os
+
 def writeToJSON(data): 
     with open('results/cheapestOneWay.json', 'w') as f:
         json.dump(data, f, indent=4)
@@ -34,9 +35,6 @@ def makeAPICall():
 
         data = response.json()
 
-        # Write the data to a JSON file
-        # writeToJSON(airport,data)
-        # Write the data to a CSV file
         writeToCSV(airport, data)
     
 makeAPICall()
