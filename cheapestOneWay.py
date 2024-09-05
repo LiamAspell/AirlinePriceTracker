@@ -4,6 +4,15 @@ import json
 from searchCriteria import DEPARTURE_AIRPORT,ARRIVAL_AIRPORT,DEPARTURE_DATE,CURRENCY,CABIN_CLASS,ADULTS 
 import os as os
 
+
+API_KEY = os.getenv('API_KEY')
+if not API_KEY:
+    try:
+        from config import API_KEY
+    except ImportError:
+        raise RuntimeError("API_KEY not found in environment variables or config.py")
+
+
 def writeToJSON(data): 
     with open('results/cheapestOneWay.json', 'w') as f:
         json.dump(data, f, indent=4)
@@ -19,7 +28,7 @@ def writeToCSV(airport, data):
 
 def makeAPICall(): 
     
-    Arrival_Airports = ["AMS", "BER" "BUD"]
+    Arrival_Airports = ["AMS"] # "BER","BUD" 
     
     for airport in Arrival_Airports:
         url = "https://sky-scanner3.p.rapidapi.com/flights/cheapest-one-way"
@@ -27,7 +36,7 @@ def makeAPICall():
         querystring = {"fromEntityId":DEPARTURE_AIRPORT,"toEntityId":airport,"departDate":DEPARTURE_DATE, "currency":CURRENCY, "cabinClass":CABIN_CLASS, "adults":ADULTS}
 
         headers = {
-	        "X-RapidAPI-Key": os.getenv('API_KEY'),
+	        "X-RapidAPI-Key": API_KEY,
 	        "X-RapidAPI-Host": "sky-scanner3.p.rapidapi.com"
         }
 
