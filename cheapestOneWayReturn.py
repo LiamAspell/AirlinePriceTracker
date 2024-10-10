@@ -17,7 +17,7 @@ def writeToJSON(data):
         print("Prices have been saved to prices.json file.")
 
 def writeToCSV(airport, data): 
-    with open(f'results/airport/departure.csv', 'w', newline='') as f:
+    with open(f'results/{airport}/departure.csv', 'w', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=['day', 'group', 'price'])
         writer.writeheader()
         for item in data["data"]:
