@@ -35,4 +35,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: csv-files
-        path: results/*.csv
+        path: results/departures/*.csv
