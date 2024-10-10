@@ -12,7 +12,7 @@ if not API_KEY:
         raise RuntimeError("API_KEY not found in environment variables or config.py")
 
 def writeToJSON(data): 
-    with open('results/cheapestOneWay.json', 'w') as f:
+    with open('departures/cheapestOneWay.json', 'w') as f:
         json.dump(data, f, indent=4)
         print("Prices have been saved to prices.json file.")
 
