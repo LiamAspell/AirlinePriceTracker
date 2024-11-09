@@ -4,7 +4,8 @@ import json
 from searchCriteria import DEPARTURE_AIRPORT,ARRIVAL_AIRPORT,DEPARTURE_DATE,CURRENCY,CABIN_CLASS,ADULTS 
 import os as os
 
-API_KEY = os.getenv('API_KEY')
+#API_KEY = os.getenv('API_KEY')
+API_KEY = "090838f38cmsh0b14c91638b52a6p146c9bjsn2e69a62822bc"
 if not API_KEY:
     try:
         from config import API_KEY
@@ -17,17 +18,17 @@ def write_to_json(data):
     Args:
         data (_type_): _description_
     """
-    with open('departures/cheapestOneWay.json', 'w') as f:
+    with open('results/departures/cheapestOneWay.json', 'w') as f:
         json.dump(data, f, indent=4)
         print("Prices have been saved to prices.json file.")
 
-def write_to_csv(airport, data):
+def write_to_csv(data):
     """_summary_
 
     Args:
         data (_type_): _description_
     """
-    with open(f'departures/departure.csv', 'w', newline='') as f:
+    with open(f'results/departures/departure.csv', 'w', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=['day', 'group', 'price'])
         writer.writeheader()
         for item in data["data"]:
@@ -53,10 +54,19 @@ def make_api_request():
         response = requests.get(url, headers=headers, params=querystring)
         data = response.json()
         
-        write_to_csv(airport, data)
+        return data
+        
     
     except requests.RequestException as e:
         print(f"Error fetching data from API: {e}")
-make_api_request()
 
+def main(): 
+    """_summary_
 
+    Args:
+        data (_type_): _description_
+    """
+    data = make_api_request()
+    write_to_csv(data)
+                            
+main()
